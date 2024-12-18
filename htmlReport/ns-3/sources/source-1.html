@@ -1,0 +1,164 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > Author</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.redhat.catalog.domain_model.author</a>
+</div>
+
+<h1>Coverage Summary for Class: Author (com.redhat.catalog.domain_model.author)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Author</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (3/3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (4/4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (7/7)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.redhat.catalog.domain_model.author;
+&nbsp;
+&nbsp;import java.util.Objects;
+&nbsp;
+&nbsp;/**
+&nbsp; * 【集約】Author クラス.
+&nbsp; *
+&nbsp; * @author kkosugi
+&nbsp; */
+&nbsp;public final class Author {
+&nbsp;
+&nbsp;    private final AuthorId authorId;
+&nbsp;
+&nbsp;    private final AuthorName authorName;
+&nbsp;
+&nbsp;    /**
+&nbsp;     * コンストラクタ.
+&nbsp;     *
+&nbsp;     * @param authorId   著者のID
+&nbsp;     * @param authorName 著者の名前
+&nbsp;     */
+<b class="fc">&nbsp;    public Author(final AuthorId authorId, final AuthorName authorName) {</b>
+&nbsp;        // null チェック
+<b class="fc">&nbsp;        if (Objects.isNull(authorId) || Objects.isNull(authorName)) {</b>
+<b class="fc">&nbsp;            throw new IllegalArgumentException(&quot;authorId, authorName には null を設定することはできません.&quot;);</b>
+&nbsp;        }
+&nbsp;
+<b class="fc">&nbsp;        this.authorId = authorId;</b>
+<b class="fc">&nbsp;        this.authorName = authorName;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * 著者のフルネームを返却
+&nbsp;     *
+&nbsp;     * @return フルネーム
+&nbsp;     */
+&nbsp;    public String fullName() {
+<b class="fc">&nbsp;        return authorName.fullName();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public String toString() {
+<b class="fc">&nbsp;        return &quot;Author[&quot; +</b>
+&nbsp;                &quot;authorId=&quot; + authorId +
+&nbsp;                &quot;, authorName=&quot; + authorName +
+&nbsp;                &#39;]&#39;;
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2024-12-12 16:45</div>
+</div>
+</body>
+</html>

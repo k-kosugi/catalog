@@ -1,0 +1,167 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > RegistrationGroup</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.redhat.catalog.domain_model.book.isbn13</a>
+</div>
+
+<h1>Coverage Summary for Class: RegistrationGroup (com.redhat.catalog.domain_model.book.isbn13)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">RegistrationGroup</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (3/3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (4/4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (9/9)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.redhat.catalog.domain_model.book.isbn13;
+&nbsp;
+&nbsp;import java.util.Objects;
+&nbsp;
+&nbsp;/**
+&nbsp; * RegistrationGroup レコード. &lt;br/&gt;
+&nbsp; * ISBNの2番目の要素は、ISBNシステムに参加している国、地理的地域、言語圏を示す。&lt;br/&gt;
+&nbsp; * ISBNシステムのメンバーには、言語圏を形成するものもあれば
+&nbsp; * (例：登録グループ番号3 = GS1要素978内のドイツ言語グループ)、地域単位を形成するものもあります(例：登録グループ番号982 = GS1要素978内の南太平洋地域)。
+&nbsp; * この要素の長さはさまざまですが、最大5桁で構成されることがあります。登録グループ要素は、国際ISBN機関によって割り当てられます。&lt;br/&gt;
+&nbsp; * &lt;em&gt;Example : 978-92&lt;/em&gt;
+&nbsp; *
+&nbsp; * @author kkosugi
+&nbsp; */
+<b class="fc">&nbsp;public record RegistrationGroup(String value) {</b>
+&nbsp;
+&nbsp;    public static final int MAX_LENGTH = 5;
+&nbsp;
+&nbsp;    /**
+&nbsp;     * コンストラクター.
+&nbsp;     *
+&nbsp;     * @param value 出版物の出版された国、地域、言語圏。
+&nbsp;     */
+<b class="fc">&nbsp;    public RegistrationGroup {</b>
+&nbsp;        // null チェック
+<b class="fc">&nbsp;        if (Objects.isNull(value)) {</b>
+<b class="fc">&nbsp;            throw new IllegalArgumentException(&quot;value には null を設定できません.&quot;);</b>
+&nbsp;        }
+&nbsp;
+&nbsp;        // 長さチェック
+<b class="fc">&nbsp;        if (value.length() &gt; MAX_LENGTH) {</b>
+<b class="fc">&nbsp;            throw new IllegalArgumentException(&quot;value には長さ &quot; + MAX_LENGTH + &quot; より長い値を設定することはできません.&quot;);</b>
+&nbsp;        }
+&nbsp;
+&nbsp;        // Integer に parse できない場合、エラーを発生させる
+&nbsp;        try {
+<b class="fc">&nbsp;            Integer.parseInt(value);</b>
+&nbsp;        } catch (NumberFormatException e) {
+<b class="fc">&nbsp;            throw new IllegalArgumentException(&quot;value に設定した値は整数である必要があります.&quot;);</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * RegistrationGroup として設定した値の長さ
+&nbsp;     *
+&nbsp;     * @return The length of GroupNo.
+&nbsp;     */
+&nbsp;    public int length() {
+<b class="fc">&nbsp;        return this.value.length();</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2024-12-12 16:45</div>
+</div>
+</body>
+</html>

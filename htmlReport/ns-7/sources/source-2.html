@@ -1,0 +1,220 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > BookDAO</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.redhat.catalog.infrastructure.dao</a>
+</div>
+
+<h1>Coverage Summary for Class: BookDAO (com.redhat.catalog.infrastructure.dao)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">BookDAO</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/12)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/17)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">BookDAO$HibernateAccessOptimizer$SgNwMQJj</td>
+  </tr>
+  <tr>
+    <td class="name">BookDAO$HibernateInstantiator$EIynwCrN</td>
+  </tr>
+  <tr>
+    <td class="name">BookDAO$HibernateProxy$Vw4ZYnOx</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/12)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/17)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.redhat.catalog.infrastructure.dao;
+&nbsp;
+&nbsp;import com.redhat.catalog.domain_model.book.Title;
+&nbsp;import jakarta.persistence.*;
+&nbsp;
+&nbsp;import java.io.Serializable;
+&nbsp;import java.util.Collection;
+&nbsp;
+&nbsp;@Entity(name = &quot;book&quot;)
+&nbsp;@Table(name = &quot;book&quot;)
+&nbsp;@NamedQuery(name = &quot;findAllBooks&quot;, query = &quot;select a from book a&quot;)
+&nbsp;@NamedQuery(name = &quot;findBookByIsbn&quot;, query = &quot;select a from book a where a.isbn13 = :isbn&quot;)
+&nbsp;@NamedQuery(name = &quot;findBooksByTitle&quot;, query = &quot;select a from book a where upper(a.title) like upper(:title)&quot;)
+&nbsp;public class BookDAO implements Serializable {
+&nbsp;
+&nbsp;    @Id
+&nbsp;    @Column(name = &quot;isbn13&quot;, length = 21)
+&nbsp;    protected String isbn13;
+&nbsp;
+&nbsp;    @Column(name = &quot;title&quot;, length = Title.MAX_LENGTH)
+&nbsp;    protected String title;
+&nbsp;
+&nbsp;    @Column(name = &quot;price&quot;)
+&nbsp;    protected int price;
+&nbsp;
+&nbsp;    @OneToMany(cascade = CascadeType.ALL)
+&nbsp;    @JoinTable(
+&nbsp;            name = &quot;book_author&quot;, joinColumns = @JoinColumn(name = &quot;book_isbn13&quot;, referencedColumnName = &quot;isbn13&quot;),
+&nbsp;            inverseJoinColumns = @JoinColumn(name = &quot;author_id&quot;, referencedColumnName = &quot;id&quot;, unique = false)
+&nbsp;    )
+&nbsp;    protected Collection&lt;AuthorDAO&gt; authorList;
+&nbsp;
+&nbsp;    @OneToOne(cascade = CascadeType.ALL)
+&nbsp;    @JoinColumn(name = &quot;publisher_id&quot;, unique = false)
+&nbsp;    protected PublisherDAO publisher;
+&nbsp;
+&nbsp;    /**
+&nbsp;     * 引数なしのコンストラクタ.&lt;br/&gt;
+&nbsp;     * ORM を利用するのに必要.
+&nbsp;     */
+<b class="nc">&nbsp;    protected BookDAO() {</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * コンストラクタ.
+&nbsp;     *
+&nbsp;     * @param isbn13     book テーブルの isbn13 列
+&nbsp;     * @param title      book テーブルの title 列
+&nbsp;     * @param price      book テーブルの price 列
+&nbsp;     * @param authorList book テーブルの isbn13 に関連づけられた Author の一覧
+&nbsp;     * @param publisher  book テーブルの isbn13 に関連づけれれた Publisher
+&nbsp;     */
+<b class="nc">&nbsp;    public BookDAO(String isbn13, String title, int price, Collection&lt;AuthorDAO&gt; authorList, PublisherDAO publisher) {</b>
+<b class="nc">&nbsp;        this.isbn13 = isbn13;</b>
+<b class="nc">&nbsp;        this.title = title;</b>
+<b class="nc">&nbsp;        this.price = price;</b>
+<b class="nc">&nbsp;        this.authorList = authorList;</b>
+<b class="nc">&nbsp;        this.publisher = publisher;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public String getIsbn13() {
+<b class="nc">&nbsp;        return isbn13;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void setIsbn13(String isbn13) {
+<b class="nc">&nbsp;        this.isbn13 = isbn13;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public String getTitle() {
+<b class="nc">&nbsp;        return title;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void setTitle(String title) {
+<b class="nc">&nbsp;        this.title = title;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public int getPrice() {
+<b class="nc">&nbsp;        return price;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void setPrice(int price) {
+<b class="nc">&nbsp;        this.price = price;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public Collection&lt;AuthorDAO&gt; getAuthorList() {
+<b class="nc">&nbsp;        return this.authorList;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void setAuthorList(Collection&lt;AuthorDAO&gt; authorList) {
+<b class="nc">&nbsp;        this.authorList = authorList;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public PublisherDAO getPublisher() {
+<b class="nc">&nbsp;        return this.publisher;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void setPublisher(PublisherDAO publisher) {
+<b class="nc">&nbsp;        this.publisher = publisher;</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2024-12-12 16:45</div>
+</div>
+</body>
+</html>
